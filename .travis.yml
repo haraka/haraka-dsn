@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+    - "6"
+    - "8"
+
+services:
+# https://docs.travis-ci.com/user/database-setup/
+
+before_script:
+
+script:
+    - npm run lint
+    - npm test
+
+after_success:
+
+   - npm install istanbul codecov
+   - npm run cover
+   - ./node_modules/.bin/codecov
+
+sudo: false
