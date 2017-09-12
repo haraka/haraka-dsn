@@ -11,8 +11,8 @@
 <!-- leave these buried at the bottom of the document -->
 [ci-img]: https://travis-ci.org/haraka/haraka-dsn.svg
 [ci-url]: https://travis-ci.org/haraka/haraka-dsn
-[ci-win-img]: https://ci.appveyor.com/api/projects/status/e3a9ieok4scqtfxo?svg=true
-[ci-win-url]: https://ci.appveyor.com/project/haraka/haraka-e3a9ieok4scqtfxo
+[ci-win-img]: https://ci.appveyor.com/api/projects/status/jl1acy5j9x277b79?svg=true
+[ci-win-url]: https://ci.appveyor.com/project/msimerson/haraka-dsn
 [cov-img]: https://codecov.io/github/haraka/haraka-dsn/coverage.svg
 [cov-url]: https://codecov.io/github/haraka/haraka-dsn
 [clim-img]: https://codeclimate.com/github/haraka/haraka-dsn/badges/gpa.svg
