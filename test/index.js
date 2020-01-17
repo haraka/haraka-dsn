@@ -6,7 +6,7 @@ const constants = require('haraka-constants');
 
 constants.import(global);
 
-describe('haraka-dns', function () {
+describe('haraka-dsn', function () {
     beforeEach(function (done) {
         this.DSN = require('../index')
         done()
@@ -48,6 +48,20 @@ describe('haraka-dns', function () {
         },
         this.DSN.create(200, 'test msg', 7)
         );
+        done()
+    })
+
+    it('net_unspecified returns expected code & message', function (done) {
+        const r = this.DSN.net_unspecified()
+        assert.equal(r.code, 450)
+        assert.equal(r.default_msg, 'Other or undefined network or routing status')
+        done()
+    })
+
+    it('net_unable_to_route returns expected code & message', function (done) {
+        const r = this.DSN.net_unable_to_route()
+        assert.equal(r.code, 550)
+        assert.equal(r.default_msg, 'Unable to route')
         done()
     })
 })
