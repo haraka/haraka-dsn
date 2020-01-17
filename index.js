@@ -75,7 +75,6 @@ const enum_status_codes = [
 ];
 
 class DSN {
-
     constructor (code, msg, def, subject, detail) {
         this.code = (/^[245]\d{2}/.exec(code)) ? code : null || def || 450;
         this.msg = msg;
@@ -96,87 +95,90 @@ class DSN {
 
         this.reply = `${[this.cls, this.sub, this.det].join('.')} ${this.msg || this.default_msg}`;
     }
+
+    static create (code, msg, subject, detail) {
+        return new DSN(code, msg, null, subject, detail);
+    }
+
+    static unspecified (msg, code) {                  return new DSN(code, msg, 450, 0, 0); }
+
+    // addr_*
+    static addr_unspecified (msg, code) {             return new DSN(code, msg, 450, 1, 0); }
+    static addr_bad_dest_mbox (msg, code) {           return new DSN(code, msg, 550, 1, 1); }
+    static no_such_user (msg, code) {                 return new DSN(code, msg || 'No such user', 550, 1, 1); }
+    static addr_bad_dest_system (msg, code) {         return new DSN(code, msg, 550, 1, 2); }
+    static addr_bad_dest_syntax (msg, code) {         return new DSN(code, msg, 550, 1, 3); }
+    static addr_dest_ambigous (msg, code) {           return new DSN(code, msg, 450, 1, 4); }
+    static addr_rcpt_ok (msg, code) {                 return new DSN(code, msg, 250, 1, 5); }
+    static addr_mbox_moved (msg, code) {              return new DSN(code, msg, 550, 1, 6); }
+    static addr_bad_from_syntax (msg, code) {         return new DSN(code, msg, 550, 1, 7); }
+    static addr_bad_from_system (msg, code) {         return new DSN(code, msg, 550, 1, 8); }
+
+    // mbox_*
+    static mbox_unspecified (msg, code) {             return new DSN(code, msg, 450, 2, 0); }
+    static mbox_disabled (msg, code) {                return new DSN(code, msg, 550, 2, 1); }
+    static mbox_full (msg, code) {                    return new DSN(code, msg, 450, 2, 2); }
+    static mbox_msg_too_long (msg, code) {            return new DSN(code, msg, 550, 2, 3); }
+    static mbox_list_expansion_problem (msg, code) {  return new DSN(code, msg, 450, 2, 4); }
+
+    // sys_*
+    static sys_unspecified (msg, code) {              return new DSN(code, msg, 450, 3, 0); }
+    static sys_disk_full (msg, code) {                return new DSN(code, msg, 450, 3, 1); }
+    static sys_not_accepting_mail (msg, code) {       return new DSN(code, msg, 450, 3, 2); }
+    static sys_not_supported (msg, code) {            return new DSN(code, msg, 450, 3, 3); }
+    static sys_msg_too_big (msg, code) {              return new DSN(code, msg, 550, 3, 4); }
+    static sys_incorrectly_configured (msg, code) {   return new DSN(code, msg, 450, 3, 5); }
+
+    // net_*
+    static net_unspecified (msg, code) {              return new DSN(code, msg, 450, 4, 0); }
+    static net_no_answer (msg, code) {                return new DSN(code, msg, 450, 4, 1); }
+    static net_bad_connection (msg, code) {           return new DSN(code, msg, 450, 4, 2); }
+    static net_directory_server_failed (msg, code) {  return new DSN(code, msg, 450, 4, 3); }
+    static temp_resolver_failed (msg, code) {         return new DSN(code, msg || 'Temporary address resolution failure', 450, 4, 3); }
+    static net_unable_to_route (msg, code) {          return new DSN(code, msg, 550, 4, 4); }
+    static net_system_congested (msg, code) {         return new DSN(code, msg, 450, 4, 5); }
+    static net_routing_loop (msg, code) {             return new DSN(code, msg, 550, 4, 6); }
+    static too_many_hops (msg, code) {                return new DSN(code, msg || 'Too many hops', 550, 4, 6); }
+    static net_delivery_time_expired (msg, code) {    return new DSN(code, msg, 550, 4, 7); }
+
+    // proto_*
+    static proto_unspecified (msg, code) {            return new DSN(code, msg, 450, 5, 0); }
+    static proto_invalid_command (msg, code) {        return new DSN(code, msg, 550, 5, 1); }
+    static proto_syntax_error (msg, code) {           return new DSN(code, msg, 550, 5, 2); }
+    static proto_too_many_rcpts (msg, code) {         return new DSN(code, msg, 450, 5, 3); }
+    static proto_invalid_cmd_args (msg, code) {       return new DSN(code, msg, 550, 5, 4); }
+    static proto_wrong_version (msg, code) {          return new DSN(code, msg, 450, 5, 5); }
+
+    // media_*
+    static media_unspecified (msg, code) {            return new DSN(code, msg, 450, 6, 0); }
+    static media_unsupported (msg, code) {            return new DSN(code, msg, 550, 6, 1); }
+    static media_conv_prohibited (msg, code) {        return new DSN(code, msg, 550, 6, 2); }
+    static media_conv_unsupported (msg, code) {       return new DSN(code, msg, 450, 6, 3); }
+    static media_conv_lossy (msg, code) {             return new DSN(code, msg, 450, 6, 4); }
+    static media_conv_failed (msg, code) {            return new DSN(code, msg, 450, 6, 5); }
+
+    // sec_*
+    static sec_unspecified (msg, code) {              return new DSN(code, msg, 450, 7, 0); }
+    static sec_unauthorized (msg, code) {             return new DSN(code, msg, 550, 7, 1); }
+    static bad_sender_ip (msg, code) {                return new DSN(code, msg || 'Bad sender IP', 550, 7, 1); }
+    static relaying_denied (msg, code) {              return new DSN(code, msg || 'Relaying denied', 550, 7, 1); }
+    static sec_list_expn_prohibited (msg, code) {     return new DSN(code, msg, 550, 7, 2); }
+    static sec_conv_failed (msg, code) {              return new DSN(code, msg, 550, 7, 3); }
+    static sec_feature_unsupported (msg, code) {      return new DSN(code, msg, 550, 7, 4); }
+    static sec_crypto_failure (msg, code) {           return new DSN(code, msg, 550, 7, 5); }
+    static sec_crypto_algo_unsupported (msg, code) {  return new DSN(code, msg, 450, 7, 6); }
+    static sec_msg_integrity_failure (msg, code) {    return new DSN(code, msg, 550, 7, 7); }
+
+    // RFC4954
+    static auth_succeeded (msg, code) {               return new DSN(code, msg || 'Authentication Succeeded', 235, 7, 0); }
+    static auth_pass_transition_needed (msg, code) {  return new DSN(code, msg || 'A password transition is needed', 432, 7, 12); }
+    static auth_temp_fail (msg, code) {               return new DSN(code, msg || 'Temporary authentication failure', 454, 7, 0); }
+    static auth_too_weak (msg, code) {                return new DSN(code, msg, 534, 7, 9); }
+    static auth_invalid (msg, code) {                 return new DSN(code, msg, 535, 7, 8); }
+    static auth_exch_too_long (msg, code) {           return new DSN(code, msg, 500, 5, 6)}
+    static auth_required (msg, code) {                return new DSN(code, msg || 'Authentication required', 530, 7, 0); }
+    static auth_crypt_required (msg, code) {          return new DSN(code, msg, 538, 7, 11); }
+
 }
 
-exports.create = function (code, msg, subject, detail) {
-    return new DSN(code, msg, null, subject, detail);
-}
-
-exports.unspecified                 = (msg, code) => { return new DSN(code, msg, 450, 0, 0); }
-
-// addr_*
-exports.addr_unspecified            = (msg, code) => { return new DSN(code, msg, 450, 1, 0); }
-exports.addr_bad_dest_mbox          = (msg, code) => { return new DSN(code, msg, 550, 1, 1); }
-exports.no_such_user                = (msg, code) => { return new DSN(code, msg || 'No such user', 550, 1, 1); }
-exports.addr_bad_dest_system        = (msg, code) => { return new DSN(code, msg, 550, 1, 2); }
-exports.addr_bad_dest_syntax        = (msg, code) => { return new DSN(code, msg, 550, 1, 3); }
-exports.addr_dest_ambigous          = (msg, code) => { return new DSN(code, msg, 450, 1, 4); }
-exports.addr_rcpt_ok                = (msg, code) => { return new DSN(code, msg, 250, 1, 5); }
-exports.addr_mbox_moved             = (msg, code) => { return new DSN(code, msg, 550, 1, 6); }
-exports.addr_bad_from_syntax        = (msg, code) => { return new DSN(code, msg, 550, 1, 7); }
-exports.addr_bad_from_system        = (msg, code) => { return new DSN(code, msg, 550, 1, 8); }
-
-// mbox_*
-exports.mbox_unspecified            = (msg, code) => { return new DSN(code, msg, 450, 2, 0); }
-exports.mbox_disabled               = (msg, code) => { return new DSN(code, msg, 550, 2, 1); }
-exports.mbox_full                   = (msg, code) => { return new DSN(code, msg, 450, 2, 2); }
-exports.mbox_msg_too_long           = (msg, code) => { return new DSN(code, msg, 550, 2, 3); }
-exports.mbox_list_expansion_problem = (msg, code) => { return new DSN(code, msg, 450, 2, 4); }
-
-// sys_*
-exports.sys_unspecified             = (msg, code) => { return new DSN(code, msg, 450, 3, 0); }
-exports.sys_disk_full               = (msg, code) => { return new DSN(code, msg, 450, 3, 1); }
-exports.sys_not_accepting_mail      = (msg, code) => { return new DSN(code, msg, 450, 3, 2); }
-exports.sys_not_supported           = (msg, code) => { return new DSN(code, msg, 450, 3, 3); }
-exports.sys_msg_too_big             = (msg, code) => { return new DSN(code, msg, 550, 3, 4); }
-exports.sys_incorrectly_configured  = (msg, code) => { return new DSN(code, msg, 450, 3, 5); }
-
-// net_*
-exports.net_unspecified             = (msg, code) => { return new DSN(code, msg, 450, 4, 0); }
-exports.net_no_answer               = (msg, code) => { return new DSN(code, msg, 450, 4, 1); }
-exports.net_bad_connection          = (msg, code) => { return new DSN(code, msg, 450, 4, 2); }
-exports.net_directory_server_failed = (msg, code) => { return new DSN(code, msg, 450, 4, 3); }
-exports.temp_resolver_failed        = (msg, code) => { return new DSN(code, msg || 'Temporary address resolution failure', 450, 4, 3); }
-exports.net_unable_to_route         = (msg, code) => { return new DSN(code, msg, 550, 4, 4); }
-exports.net_system_congested        = (msg, code) => { return new DSN(code, msg, 450, 4, 5); }
-exports.net_routing_loop            = (msg, code) => { return new DSN(code, msg, 550, 4, 6); }
-exports.too_many_hops               = (msg, code) => { return new DSN(code, msg || 'Too many hops', 550, 4, 6); }
-exports.net_delivery_time_expired   = (msg, code) => { return new DSN(code, msg, 550, 4, 7); }
-
-// proto_*
-exports.proto_unspecified           = (msg, code) => { return new DSN(code, msg, 450, 5, 0); }
-exports.proto_invalid_command       = (msg, code) => { return new DSN(code, msg, 550, 5, 1); }
-exports.proto_syntax_error          = (msg, code) => { return new DSN(code, msg, 550, 5, 2); }
-exports.proto_too_many_rcpts        = (msg, code) => { return new DSN(code, msg, 450, 5, 3); }
-exports.proto_invalid_cmd_args      = (msg, code) => { return new DSN(code, msg, 550, 5, 4); }
-exports.proto_wrong_version         = (msg, code) => { return new DSN(code, msg, 450, 5, 5); }
-
-// media_*
-exports.media_unspecified           = (msg, code) => { return new DSN(code, msg, 450, 6, 0); }
-exports.media_unsupported           = (msg, code) => { return new DSN(code, msg, 550, 6, 1); }
-exports.media_conv_prohibited       = (msg, code) => { return new DSN(code, msg, 550, 6, 2); }
-exports.media_conv_unsupported      = (msg, code) => { return new DSN(code, msg, 450, 6, 3); }
-exports.media_conv_lossy            = (msg, code) => { return new DSN(code, msg, 450, 6, 4); }
-exports.media_conv_failed           = (msg, code) => { return new DSN(code, msg, 450, 6, 5); }
-
-// sec_*
-exports.sec_unspecified             = (msg, code) => { return new DSN(code, msg, 450, 7, 0); }
-exports.sec_unauthorized            = (msg, code) => { return new DSN(code, msg, 550, 7, 1); }
-exports.bad_sender_ip               = (msg, code) => { return new DSN(code, msg || 'Bad sender IP', 550, 7, 1); }
-exports.relaying_denied             = (msg, code) => { return new DSN(code, msg || 'Relaying denied', 550, 7, 1); }
-exports.sec_list_expn_prohibited    = (msg, code) => { return new DSN(code, msg, 550, 7, 2); }
-exports.sec_conv_failed             = (msg, code) => { return new DSN(code, msg, 550, 7, 3); }
-exports.sec_feature_unsupported     = (msg, code) => { return new DSN(code, msg, 550, 7, 4); }
-exports.sec_crypto_failure          = (msg, code) => { return new DSN(code, msg, 550, 7, 5); }
-exports.sec_crypto_algo_unsupported = (msg, code) => { return new DSN(code, msg, 450, 7, 6); }
-exports.sec_msg_integrity_failure   = (msg, code) => { return new DSN(code, msg, 550, 7, 7); }
-
-// RFC4954
-exports.auth_succeeded              = (msg, code) => { return new DSN(code, msg || 'Authentication Succeeded', 235, 7, 0); }
-exports.auth_pass_transition_needed = (msg, code) => { return new DSN(code, msg || 'A password transition is needed', 432, 7, 12); }
-exports.auth_temp_fail              = (msg, code) => { return new DSN(code, msg || 'Temporary authentication failure', 454, 7, 0); }
-exports.auth_too_weak               = (msg, code) => { return new DSN(code, msg, 534, 7, 9); }
-exports.auth_invalid                = (msg, code) => { return new DSN(code, msg, 535, 7, 8); }
-exports.auth_exch_too_long          = (msg, code) => { return new DSN(code, msg, 500, 5, 6)}
-exports.auth_required               = (msg, code) => { return new DSN(code, msg || 'Authentication required', 530, 7, 0); }
-exports.auth_crypt_required         = (msg, code) => { return new DSN(code, msg, 538, 7, 11); }
+module.exports = DSN

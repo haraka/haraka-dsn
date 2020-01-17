@@ -1,6 +1,7 @@
 
 ### 1.0.3 - 2020-01-17
 
+- Use es6 classes on full - static members instead of old style `exports.stuff`
 - test runner: nodeunit -> mocha
 - ci test: drop node 6,8 add node 12 testing
 - use es6 class #7
