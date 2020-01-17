@@ -1,13 +1,13 @@
 {
   "name": "haraka-dsn",
-  "version": "1.0.2",
-  "description": "Haraka Notes",
+  "version": "1.0.3",
+  "description": "Haraka DSN",
   "main": "index.js",
   "scripts": {
-    "lint": "./node_modules/.bin/eslint *.js test/*.js",
-    "lintfix": "./node_modules/.bin/eslint --fix *.js test/*.js",
-    "cover": "./node_modules/.bin/istanbul cover ./node_modules/.bin/nodeunit",
-    "test": "./node_modules/.bin/nodeunit"
+    "lint": "npx eslint *.js test/*.js",
+    "lintfix": "npx --fix *.js test/*.js",
+    "cover": "npx istanbul cover npm test",
+    "test": "npx mocha"
   },
   "repository": {
     "type": "git",
@@ -17,18 +17,17 @@
     "haraka",
     "dsn"
   ],
-  "author": "Haraka Team <haraka.team@gmail.com>",
+  "author": "Haraka Team <haraka.mail@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/haraka/haraka-dsn/issues"
   },
   "homepage": "https://github.com/haraka/haraka-dsn#readme",
   "devDependencies": {
-    "eslint": ">=3",
+    "eslint": ">=4",
     "eslint-plugin-haraka": "*",
     "haraka-constants": "*",
-    "nodeunit": "*"
+    "mocha": "*"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
