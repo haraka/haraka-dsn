@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "npx eslint *.js test/*.js",
     "lintfix": "npx --fix *.js test/*.js",
-    "cover": "npx istanbul cover npm test",
+    "cover": "npx nyc --reporter=lcov npm run test",
     "test": "npx mocha"
   },
   "repository": {
@@ -29,5 +29,6 @@
     "haraka-constants": "*",
     "mocha": "*"
   },
-  "dependencies": {}
+  "dependencies": {
+  }
 }
