@@ -3,7 +3,7 @@
   "version": "1.0.3",
   "description": "Haraka DSN",
   "engines": {
-    "node": ">= v10.18.1"
+    "node": ">= v14.0.0"
   },
   "main": "index.js",
   "scripts": {
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/haraka/haraka-dsn#readme",
   "devDependencies": {
-    "eslint": ">=4",
+    "eslint": ">=6",
     "eslint-plugin-haraka": "*",
     "haraka-constants": "*",
     "mocha": "*"
