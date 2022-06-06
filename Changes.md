@@ -26,3 +26,6 @@
 ### 1.0.1 - 2017-09-04
 
 - initial release
+
+
+[1.0.4]: https://github.com/haraka/haraka-dsn/releases/tag/1.0.4
