@@ -7,9 +7,8 @@
   },
   "main": "index.js",
   "scripts": {
-    "lint": "npx eslint *.js test/*.js",
-    "lintfix": "npx --fix *.js test/*.js",
-    "cover": "npx nyc --reporter=lcov npm run test",
+    "lint": "npx eslint *.js test",
+    "lintfix": "npx --fix *.js test",
     "test": "npx mocha"
   },
   "repository": {
@@ -27,10 +26,10 @@
   },
   "homepage": "https://github.com/haraka/haraka-dsn#readme",
   "devDependencies": {
-    "eslint": ">=6",
+    "eslint": ">=8",
     "eslint-plugin-haraka": "*",
     "haraka-constants": "*",
-    "mocha": "*"
+    "mocha": ">=9"
   },
   "dependencies": {
   }

@@ -1,5 +1,9 @@
 
+### Unreleased
 
+### 1.0.4 - 2022-06-05
+
+- ci: update with shared GHA workflows
 - ci: add node 18 testing
 - ci: replace travis & appveyor with github actions
 

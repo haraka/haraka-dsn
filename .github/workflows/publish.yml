@@ -1,49 +1,14 @@
-name: Publish
+name: publish
 
 on:
-  release:
-    types: [ published ]
+  push:
+    branches:
+      - master
 
 env:
-  node_version: 16
+  CI: true
 
 jobs:
-
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v3
-      with:
-        node-version: ${{ env.node_version }}
-    - run: npm install
-    - run: npm test
-
-  publish-npm:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-
-    - uses: actions/setup-node@v3
-      with:
-        node-version: ${{ env.node_version }}
-        registry-url: https://registry.npmjs.org
-    - run: npm install
-
-    - run: npm publish --ignore-scripts --access public
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-
-  publish-gpr:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-
-    - uses: actions/setup-node@v2
-      with:
-        node-version: ${{ env.node_version }}
-        registry-url: https://registry.npmjs.org
-    - run: npm install
+  publish:
+    uses: haraka/.github/.github/workflows/publish.yml@master
+    secrets: inherit
