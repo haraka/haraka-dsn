@@ -1,6 +1,6 @@
 {
   "name": "haraka-dsn",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Haraka DSN",
   "engines": {
     "node": ">= v14.0.0"
@@ -31,6 +31,5 @@
     "haraka-constants": "*",
     "mocha": ">=9"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
