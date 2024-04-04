@@ -1,6 +1,14 @@
 
 ### Unreleased
 
+### 1.0.5 - 2024-04-04
+
+- dev: only install mocha/eslint with npx, on demand
+- pack: declare files to publish (shrink package) #21
+- test: remove useless use of done
+- ci: add on.pull_request
+
+
 ### 1.0.4 - 2022-06-05
 
 - ci: update with shared GHA workflows
@@ -28,4 +36,3 @@
 - initial release
 
 
-[1.0.4]: https://github.com/haraka/haraka-dsn/releases/tag/1.0.4
