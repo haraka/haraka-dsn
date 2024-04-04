@@ -1,15 +1,22 @@
 {
   "name": "haraka-dsn",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Haraka DSN",
   "engines": {
     "node": ">= v14.0.0"
   },
   "main": "index.js",
+  "files": [
+    "Changes.md",
+    "LICENSE",
+    "README.md",
+    "index.js",
+    "package.json"
+  ],
   "scripts": {
-    "lint": "npx eslint *.js test",
-    "lintfix": "npx --fix *.js test",
-    "test": "npx mocha"
+    "lint": "npx eslint@^8 *.js test",
+    "lintfix": "npx exlint@^8 --fix *.js test",
+    "test": "npx mocha@^10"
   },
   "repository": {
     "type": "git",
@@ -26,10 +33,8 @@
   },
   "homepage": "https://github.com/haraka/haraka-dsn#readme",
   "devDependencies": {
-    "eslint": ">=8",
     "eslint-plugin-haraka": "*",
-    "haraka-constants": "*",
-    "mocha": ">=9"
+    "haraka-constants": "*"
   },
   "dependencies": {}
 }
