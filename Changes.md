@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 - add/update DSNs from RFCs 3886, 4468, 4954
 - doc(README): improve formatting, add RFCs to Reference
+- dep: eslint-plugin-haraka -> @haraka/eslint-config
+- chore(ci): updated to latest shared GHA configs
 
 ### 1.0.5 - 2024-04-04
 

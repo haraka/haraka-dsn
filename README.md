@@ -15,25 +15,24 @@ The [DSN](https://github.com/haraka/haraka-dsn) allows a plugin to return RFC co
 
 The DSN module exposes a callable function for each status condition defined in the RFCs. See the References section below for further information and background.
 
-
 ### Using the DSN module in your plugin
 
 Load the DSN module by adding the following line to the top of your plugin:
 
 ```js
-const DSN = require('haraka-dsn');
+const DSN = require('haraka-dsn')
 ```
 
 Then instead of:
 
 ```js
-next(DENY, 'No such user');
+next(DENY, 'No such user')
 ```
 
 You can call the DSN module and return that in place of optional message argument of next():
 
 ```js
-next(DENY, DSN.no_such_user());
+next(DENY, DSN.no_such_user())
 ```
 
 This will cause Haraka to return the following back to the client:
@@ -46,7 +45,7 @@ The DSN functions are used like this:
 DSN.<function name>([message], [code]);
 ```
 
-The function name is required and maps to the list of defined status codes in RFC 3463.  All of the available functions are detailed in the table below.
+The function name is required and maps to the list of defined status codes in RFC 3463. All of the available functions are detailed in the table below.
 
 [message] is optional and should contain the message that you would like to be returned to the client, this value can be a string or an array which can contain multiple elements which will cause a multi-line reply to be sent to the client. If a message is not supplied, then the default message for the DSN function is used.
 
@@ -423,6 +422,7 @@ The function name is required and maps to the list of defined status codes in RF
 - [RFC 4954](https://www.rfc-editor.org/rfc/rfc4954#section-6)
 
 <!-- leave these buried at the bottom of the document -->
+
 [ci-img]: https://github.com/haraka/haraka-dsn/actions/workflows/ci.yml/badge.svg
 [ci-url]: https://github.com/haraka/haraka-dsn/actions/workflows/ci.yml
 [cov-img]: https://codecov.io/github/haraka/haraka-dsn/coverage.svg
