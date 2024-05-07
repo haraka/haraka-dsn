@@ -1,21 +1,13 @@
+# Changelog
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Unreleased
 
-
 ### [1.1.0] - 2024-05-07
 
-#### Added
-
-- 
-
-#### Fixed
-
-- 
-
-#### Changed
-
-- 
-
+- add/update DSNs from RFCs 3886, 4468, 4954
+- doc(README): improve formatting, add RFCs to Reference
 
 ### 1.0.5 - 2024-04-04
 
@@ -24,13 +16,11 @@
 - test: remove useless use of done
 - ci: add on.pull_request
 
-
 ### 1.0.4 - 2022-06-05
 
 - ci: update with shared GHA workflows
 - ci: add node 18 testing
 - ci: replace travis & appveyor with github actions
-
 
 ### 1.0.3 - 2020-01-17
 
@@ -41,15 +31,14 @@
 - Fix execution rights on run_tests #2
 - Replaced concatenated strings with template literals #1
 
-
 ### 1.0.2 - 2017-09-11
 
 - es6: use arrow functions
-
 
 ### 1.0.1 - 2017-09-04
 
 - initial release
 
-
-[1.1.0]: https://github.com/haraka/haraka-dsn/releases/tag/1.1.0
+[1.0.4]: https://github.com/haraka/haraka-dsn/releases/tag/v1.0.4
+[1.0.5]: https://github.com/haraka/haraka-dsn/releases/tag/v1.0.5
+[1.1.0]: https://github.com/haraka/haraka-dsn/releases/tag/v1.1.0

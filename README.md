@@ -11,34 +11,40 @@ Plugins return constants to Haraka to specify how to respond to clients for a pa
 
 These constants include DENY, DENYSOFT and DENYDISCONNECT which automatically output an appropriate SMTP status code (e.g. 450 temporary failures for DENYSOFT or 550 permanent failures for DENY or DENYDISCONNECT) in the SMTP response sent back to the client along with an optional message text that you return as arguments to the next() function.
 
-The [DSN](https://github.com/haraka/haraka-dsn) allows a plugin to return RFC 3463 compliant extended status codes and allows plugins to override the SMTP status code returned by Haraka.
+The [DSN](https://github.com/haraka/haraka-dsn) allows a plugin to return RFC compliant extended status codes and allows plugins to override the SMTP status code returned by Haraka.
 
-The DSN module exposes a callable function for each status condition defined in RFC 3463.
-
-Please refer to [RFC 3463](http://tools.ietf.org/html/rfc3463) for further information and background.
+The DSN module exposes a callable function for each status condition defined in the RFCs. See the References section below for further information and background.
 
 
 ### Using the DSN module in your plugin
 
 Load the DSN module by adding the following line to the top of your plugin:
 
-    const DSN = require('haraka-dsn');
+```js
+const DSN = require('haraka-dsn');
+```
 
 Then instead of:
 
-    return next(DENY, 'No such user');
+```js
+next(DENY, 'No such user');
+```
 
 You can call the DSN module and return that in place of optional message argument of next():
 
-    return next(DENY, DSN.no_such_user());
+```js
+next(DENY, DSN.no_such_user());
+```
 
 This will cause Haraka to return the following back to the client:
 
-    550 5.1.1 No such user
+    `550 5.1.1 No such user`
 
 The DSN functions are used like this:
 
-    DSN.<function name>([message], [code]);
+```js
+DSN.<function name>([message], [code]);
+```
 
 The function name is required and maps to the list of defined status codes in RFC 3463.  All of the available functions are detailed in the table below.
 
@@ -408,6 +414,13 @@ The function name is required and maps to the list of defined status codes in RF
  </tr>
 </table>
 
+### References
+
+- [RFC 1893](https://www.rfc-editor.org/rfc/rfc1893)
+- [RFC 3463](http://tools.ietf.org/html/rfc3463)
+- [RFC 3886](https://www.rfc-editor.org/rfc/rfc3886#section-3.3.4)
+- [RFC 4468](https://www.rfc-editor.org/rfc/rfc4468#section-5)
+- [RFC 4954](https://www.rfc-editor.org/rfc/rfc4954#section-6)
 
 <!-- leave these buried at the bottom of the document -->
 [ci-img]: https://github.com/haraka/haraka-dsn/actions/workflows/ci.yml/badge.svg

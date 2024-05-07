@@ -15,6 +15,7 @@ const enum_status_codes = [
         "Destination mailbox has moved, No forwarding address",     // X.1.6
         "Bad sender's mailbox address syntax",                      // X.1.7
         "Bad sender's system address",                              // X.1.8
+        "Message relayed to non-compliant mailer",                  // X.1.9
     ],
     [   // X.2.XXX Mailbox Status                   (mbox_*)
         "Other or undefined mailbox status",                        // X.2.0
@@ -22,6 +23,7 @@ const enum_status_codes = [
         "Mailbox full",                                             // X.2.2
         "Message length exceeds administrative limit",              // X.2.3
         "Mailing list expansion problem",                           // X.2.4
+        ""
     ],
     [   // X.3.XXX Mail System Status               (sys_*)
         "Other or undefined mail system status",                    // X.3.0
@@ -57,9 +59,10 @@ const enum_status_codes = [
         "Conversion required but not supported",                    // X.6.3
         "Conversion with loss performed",                           // X.6.4
         "Conversion failed",                                        // X.6.5
+        "Message content not available",                            // X.6.6
     ],
     [   // X.7.XXX Security or Policy Status        (sec_*)
-        "Other or undefined security status",                       // X.7.0
+        "Authentication Succeeded",                                 // X.7.0
         "Delivery not authorized, message refused",                 // X.7.1
         "Mailing list expansion prohibited",                        // X.7.2
         "Security conversion required but not possible",            // X.7.3
@@ -69,8 +72,11 @@ const enum_status_codes = [
         "Message integrity failure",                                // X.7.7
         "Authentication credentials invalid",                       // X.7.8
         "Authentication mechanism is too weak",                     // X.7.9
-        "",                                                         // X.7.10
+        "Encryption Needed",                                        // X.7.10
         "Encryption required for requested authentication mechanism", // X.7.11
+        "A password transition is needed",                          // X.7.12
+        "User Account Disabled",                                    // X.7.13
+        "Trust relationship required",                              // X.7.14
     ]
 ];
 
