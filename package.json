@@ -1,6 +1,6 @@
 {
   "name": "haraka-dsn",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Haraka DSN",
   "engines": {
     "node": ">= v14.0.0"
@@ -8,15 +8,17 @@
   "main": "index.js",
   "files": [
     "Changes.md",
-    "LICENSE",
-    "README.md",
-    "index.js",
-    "package.json"
+    "LICENSE"
   ],
   "scripts": {
+    "format": "npm run prettier:fix && npm run lint:fix",
     "lint": "npx eslint@^8 *.js test",
-    "lintfix": "npx exlint@^8 --fix *.js test",
-    "test": "npx mocha@^10"
+    "lint:fix": "npx eslint@^8 *.js test --fix",
+    "prettier": "npx prettier . --check",
+    "prettier:fix": "npx prettier . --write --log-level=warn",
+    "test": "npx mocha@10",
+    "versions": "npx dependency-version-checker check",
+    "versions:fix": "npx dependency-version-checker update && npm run prettier:fix"
   },
   "repository": {
     "type": "git",
@@ -33,8 +35,8 @@
   },
   "homepage": "https://github.com/haraka/haraka-dsn#readme",
   "devDependencies": {
-    "eslint-plugin-haraka": "*",
-    "haraka-constants": "*"
+    "@haraka/eslint-config": "^1.0.0",
+    "haraka-constants": "^1.0.0"
   },
   "dependencies": {}
 }
