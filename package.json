@@ -1,6 +1,6 @@
 {
   "name": "haraka-dsn",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Haraka DSN",
   "engines": {
     "node": ">= v14.0.0"

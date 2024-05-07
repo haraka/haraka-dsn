@@ -1,6 +1,22 @@
 
 ### Unreleased
 
+
+### [1.1.0] - 2024-05-07
+
+#### Added
+
+- 
+
+#### Fixed
+
+- 
+
+#### Changed
+
+- 
+
+
 ### 1.0.5 - 2024-04-04
 
 - dev: only install mocha/eslint with npx, on demand
@@ -36,3 +52,4 @@
 - initial release
 
 
+[1.1.0]: https://github.com/haraka/haraka-dsn/releases/tag/1.1.0
