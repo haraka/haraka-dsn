@@ -4,6 +4,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Unreleased
 
+### [1.1.2] - 2026-05-19
+
+
 ### [1.1.1] - 2026-05-18
 
 - change: dep haraka-constants 1.0.7
@@ -51,3 +54,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 [1.0.5]: https://github.com/haraka/haraka-dsn/releases/tag/v1.0.5
 [1.1.0]: https://github.com/haraka/haraka-dsn/releases/tag/v1.1.0
 [1.1.1]: https://github.com/haraka/haraka-dsn/releases/tag/v1.1.1
+[1.1.2]: https://github.com/haraka/haraka-dsn/releases/tag/v1.1.2
