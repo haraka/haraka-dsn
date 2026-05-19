@@ -94,7 +94,7 @@ const enum_status_codes = [
   ]
 ];
 
-// Strip CR/LF to prevent SMTP response injection (S1).
+// Strip CR/LF to prevent SMTP response injection.
 function sanitize(s) {
   return typeof s === 'string' ? s.replace(/[\r\n]/g, '') : s
 }
@@ -108,7 +108,7 @@ class DSN {
     this.det = detail || 0;
     this.default_msg = ((enum_status_codes[this.sub]) ? enum_status_codes[this.sub][this.det] : '') || '';
 
-    // multi-line replies — copy the array (C1) and sanitize each element (S1)
+    // multi-line replies — copy the array (C1) and sanitize each element
     if (Array.isArray(this.msg)) {
       this.reply = [];
       for (const m of this.msg.map(sanitize)) {
