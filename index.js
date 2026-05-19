@@ -82,7 +82,7 @@ const enum_status_codes = [
 
 class DSN {
   constructor (code, msg, def, subject, detail) {
-    this.code = (/^[245]\d{2}/.exec(code)) ? code : null || def || 450;
+    this.code = (/^[245]\d{2}/.exec(code)) ? code : def || 450;
     this.msg = msg;
     this.cls = parseInt(new String(this.code)[0]);
     this.sub = subject || 0;
