@@ -4,6 +4,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Unreleased
 
+### [1.1.1] - 2026-05-18
+
+#### Added
+
+- 
+
+#### Fixed
+
+- 
+
+#### Changed
+
+- 
+
+
 ### [1.1.0] - 2024-05-07
 
 - add/update DSNs from RFCs 3886, 4468, 4954
@@ -45,3 +60,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 [1.0.4]: https://github.com/haraka/haraka-dsn/releases/tag/v1.0.4
 [1.0.5]: https://github.com/haraka/haraka-dsn/releases/tag/v1.0.5
 [1.1.0]: https://github.com/haraka/haraka-dsn/releases/tag/v1.1.0
+[1.1.1]: https://github.com/haraka/haraka-dsn/releases/tag/v1.1.1

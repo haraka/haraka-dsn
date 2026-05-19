@@ -1,22 +1,22 @@
 {
   "name": "haraka-dsn",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Haraka DSN",
   "engines": {
     "node": ">= v14.0.0"
   },
   "main": "index.js",
   "files": [
-    "Changes.md",
+    "CHANGELOG.md",
     "LICENSE"
   ],
   "scripts": {
     "format": "npm run prettier:fix && npm run lint:fix",
-    "lint": "npx eslint@^8 *.js test",
-    "lint:fix": "npx eslint@^8 *.js test --fix",
+    "lint": "npx eslint *.js test",
+    "lint:fix": "npx eslint *.js test --fix",
     "prettier": "npx prettier . --check",
     "prettier:fix": "npx prettier . --write --log-level=warn",
-    "test": "npx mocha@10",
+    "test": "node --test",
     "versions": "npx dependency-version-checker check",
     "versions:fix": "npx dependency-version-checker update && npm run prettier:fix"
   },
