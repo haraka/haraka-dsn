@@ -6,18 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### [1.1.1] - 2026-05-18
 
-#### Added
-
-- 
-
-#### Fixed
-
-- 
-
-#### Changed
-
-- 
-
+- change: dep haraka-constants 1.0.7
+- change: test runner is now node:test
 
 ### [1.1.0] - 2024-05-07
 

@@ -17,8 +17,9 @@
     "prettier": "npx prettier . --check",
     "prettier:fix": "npx prettier . --write --log-level=warn",
     "test": "node --test",
-    "versions": "npx dependency-version-checker check",
-    "versions:fix": "npx dependency-version-checker update && npm run prettier:fix"
+    "versions": "npx npm-dep-mgr check",
+    "versions:fix": "npx npm-dep-mgr update",
+    "test:coverage": "npx c8 --reporter=text --reporter=text-summary npm test"
   },
   "repository": {
     "type": "git",
@@ -35,8 +36,13 @@
   },
   "homepage": "https://github.com/haraka/haraka-dsn#readme",
   "devDependencies": {
-    "@haraka/eslint-config": "^1.0.0",
-    "haraka-constants": "^1.0.0"
+    "@haraka/eslint-config": "^2.0.4",
+    "haraka-constants": "^1.0.7"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "prettier": {
+    "printWidth": 90,
+    "singleQuote": true,
+    "semi": false
+  }
 }
