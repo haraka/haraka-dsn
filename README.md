@@ -12,7 +12,7 @@ These constants include DENY, DENYSOFT and DENYDISCONNECT which automatically ou
 
 The [DSN](https://github.com/haraka/haraka-dsn) allows a plugin to return RFC compliant extended status codes and allows plugins to override the SMTP status code returned by Haraka.
 
-The DSN module exposes a callable function for each status condition defined in the RFCs. See the References section below for further information and background.
+The DSN module provides named helper functions for the most common status conditions. For less common codes, use `DSN.create()` directly. See the References section below for further information and background.
 
 ### Using the DSN module in your plugin
 
@@ -78,7 +78,7 @@ The function name is required and maps to the list of defined status codes in RF
   <td>Other address status</td>
  </tr>
  <tr>
-  <td>addr_bad_dest_mailbox</td>
+  <td>addr_bad_dest_mbox</td>
   <td align="center">550</td>
   <td align="center">X.1.1</td>
   <td>Bad destination mailbox address</td>
@@ -103,12 +103,12 @@ The function name is required and maps to the list of defined status codes in RF
  </tr>
  <tr>
   <td>addr_rcpt_ok</td>
-  <td align="center">220</td>
+  <td align="center">250</td>
   <td align="center">X.1.5</td>
   <td>Destination address valid</td>
  </tr>
  <tr>
-  <td>addr_mbox_mobed</td>
+  <td>addr_mbox_moved</td>
   <td align="center">550</td>
   <td align="center">X.1.6</td>
   <td>Destination mailbox has moved, No forwarding address</td>
@@ -270,7 +270,7 @@ The function name is required and maps to the list of defined status codes in RF
   <td>Syntax error</td>
  </tr>
  <tr>
-  <td>proto_too_many_recipients</td>
+  <td>proto_too_many_rcpts</td>
   <td align="center">450</td>
   <td align="center">X.5.3</td>
   <td>Too many recipients</td>
@@ -410,15 +410,132 @@ The function name is required and maps to the list of defined status codes in RF
   <td align="center">X.7.1</td>
   <td>Relaying denied</td>
  </tr>
+ <tr>
+  <th colspan=4>Authentication Status (RFC 4954) X.7.X</th>
+ </tr>
+ <tr>
+  <td>auth_succeeded</td>
+  <td align="center">235</td>
+  <td align="center">X.7.0</td>
+  <td>Authentication Succeeded</td>
+ </tr>
+ <tr>
+  <td>auth_pass_transition_needed</td>
+  <td align="center">432</td>
+  <td align="center">X.7.12</td>
+  <td>A password transition is needed</td>
+ </tr>
+ <tr>
+  <td>auth_temp_fail</td>
+  <td align="center">454</td>
+  <td align="center">X.7.0</td>
+  <td>Temporary authentication failure</td>
+ </tr>
+ <tr>
+  <td>auth_too_weak</td>
+  <td align="center">534</td>
+  <td align="center">X.7.9</td>
+  <td>Authentication mechanism is too weak</td>
+ </tr>
+ <tr>
+  <td>auth_invalid</td>
+  <td align="center">535</td>
+  <td align="center">X.7.8</td>
+  <td>Authentication credentials invalid</td>
+ </tr>
+ <tr>
+  <td>auth_exch_too_long</td>
+  <td align="center">500</td>
+  <td align="center">X.5.6</td>
+  <td>Authentication Exchange line is too long</td>
+ </tr>
+ <tr>
+  <td>auth_required</td>
+  <td align="center">530</td>
+  <td align="center">X.7.0</td>
+  <td>Authentication required</td>
+ </tr>
+ <tr>
+  <td>auth_crypt_required</td>
+  <td align="center">538</td>
+  <td align="center">X.7.11</td>
+  <td>Encryption required for requested authentication mechanism</td>
+ </tr>
+ <tr>
+  <td colspan="4"><strong>RFC 7505 — Null MX</strong></td>
+ </tr>
+ <tr>
+  <td>addr_null_mx</td>
+  <td align="center">556</td>
+  <td align="center">X.1.10</td>
+  <td>Recipient address has null MX</td>
+ </tr>
+ <tr>
+  <td>sec_null_mx_sender</td>
+  <td align="center">550</td>
+  <td align="center">X.7.27</td>
+  <td>Sender address has null MX</td>
+ </tr>
+ <tr>
+  <td colspan="4"><strong>RFC 7372 — Email Authentication</strong></td>
+ </tr>
+ <tr>
+  <td>sec_dkim_no_pass</td>
+  <td align="center">550</td>
+  <td align="center">X.7.20</td>
+  <td>No passing DKIM signature found</td>
+ </tr>
+ <tr>
+  <td>sec_dkim_not_acceptable</td>
+  <td align="center">550</td>
+  <td align="center">X.7.21</td>
+  <td>No acceptable DKIM signature found</td>
+ </tr>
+ <tr>
+  <td>sec_dkim_no_author_match</td>
+  <td align="center">550</td>
+  <td align="center">X.7.22</td>
+  <td>No valid author-matched DKIM signature found</td>
+ </tr>
+ <tr>
+  <td>sec_spf_fail</td>
+  <td align="center">550</td>
+  <td align="center">X.7.23</td>
+  <td>SPF validation failed</td>
+ </tr>
+ <tr>
+  <td>sec_spf_error</td>
+  <td align="center">451</td>
+  <td align="center">X.7.24</td>
+  <td>SPF validation error</td>
+ </tr>
+ <tr>
+  <td>sec_rdns_fail</td>
+  <td align="center">550</td>
+  <td align="center">X.7.25</td>
+  <td>Reverse DNS validation failed</td>
+ </tr>
+ <tr>
+  <td>sec_multi_auth_fail</td>
+  <td align="center">550</td>
+  <td align="center">X.7.26</td>
+  <td>Multiple authentication checks failed</td>
+ </tr>
 </table>
 
 ### References
 
-- [RFC 1893](https://www.rfc-editor.org/rfc/rfc1893)
-- [RFC 3463](http://tools.ietf.org/html/rfc3463)
-- [RFC 3886](https://www.rfc-editor.org/rfc/rfc3886#section-3.3.4)
-- [RFC 4468](https://www.rfc-editor.org/rfc/rfc4468#section-5)
-- [RFC 4954](https://www.rfc-editor.org/rfc/rfc4954#section-6)
+- RFC 1893, obsoleted by RFC 3463 — SMTP Enhanced Status Codes
+- [RFC 3463](http://tools.ietf.org/html/rfc3463) — Enhanced Mail System Status Codes
+- [RFC 3886](https://www.rfc-editor.org/rfc/rfc3886#section-3.3.4) — Extended SMTP Delivery Status Notifications
+- [RFC 4468](https://www.rfc-editor.org/rfc/rfc4468#section-5) — BURL IMAP
+- [RFC 4954](https://www.rfc-editor.org/rfc/rfc4954#section-6) — SMTP Service Extension for Authentication
+- [RFC 5248](https://www.rfc-editor.org/rfc/rfc5248) — A Registry for SMTP Enhanced Mail System Status Codes
+- [RFC 6710](https://www.rfc-editor.org/rfc/rfc6710) — SMTP Extension for Message Transfer Priorities
+- [RFC 7293](https://www.rfc-editor.org/rfc/rfc7293) — The Require-Recipient-Valid-Since Header Field
+- [RFC 7372](https://www.rfc-editor.org/rfc/rfc7372) — Email Authentication Status Codes
+- [RFC 7504](https://www.rfc-editor.org/rfc/rfc7504) — SMTP 521 and 556 Reply Codes
+- [RFC 7505](https://www.rfc-editor.org/rfc/rfc7505) — A "Null MX" Resource Record for Domains That Accept No Mail
 
 <!-- leave these buried at the bottom of the document -->
 
