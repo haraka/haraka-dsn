@@ -1,7 +1,6 @@
 [![Build Status][ci-img]][ci-url]
 [![Code Climate][clim-img]][clim-url]
 [![Code Coverage][cov-img]][cov-url]
-[![NPM][npm-img]][npm-url]
 
 # haraka-dsn
 
@@ -429,5 +428,3 @@ The function name is required and maps to the list of defined status codes in RF
 [cov-url]: https://codecov.io/github/haraka/haraka-dsn
 [clim-img]: https://codeclimate.com/github/haraka/haraka-dsn/badges/gpa.svg
 [clim-url]: https://codeclimate.com/github/haraka/haraka-dsn
-[npm-img]: https://nodei.co/npm/haraka-dsn.png
-[npm-url]: https://www.npmjs.com/package/haraka-dsn
