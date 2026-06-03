@@ -1,8 +1,6 @@
-[![Build Status][ci-img]][ci-url]
-[![Code Climate][clim-img]][clim-url]
-[![Code Coverage][cov-img]][cov-url]
-
 # haraka-dsn
+
+[![Build][ci-img]][ci-url] [![Qlty][qlty-img]][qlty-url] [![Cover][cov-img]][cov-url]
 
 ## Custom Return Codes
 
@@ -543,5 +541,5 @@ The function name is required and maps to the list of defined status codes in RF
 [ci-url]: https://github.com/haraka/haraka-dsn/actions/workflows/ci.yml
 [cov-img]: https://codecov.io/github/haraka/haraka-dsn/coverage.svg
 [cov-url]: https://codecov.io/github/haraka/haraka-dsn
-[clim-img]: https://codeclimate.com/github/haraka/haraka-dsn/badges/gpa.svg
-[clim-url]: https://codeclimate.com/github/haraka/haraka-dsn
+[qlty-img]: https://qlty.sh/gh/haraka/projects/haraka-dsn/maintainability.svg
+[qlty-url]: https://qlty.sh/gh/haraka/projects/haraka-dsn

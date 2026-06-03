@@ -1,5 +1,7 @@
 'use strict'
 
+const utils = require('haraka-utils')
+
 // Enhanced Status Codes, see RFCs in README#References
 const enum_status_codes = [
   [ // X.0.XXX Other or Undefined Status        (unspecified)
@@ -94,11 +96,6 @@ const enum_status_codes = [
   ]
 ];
 
-// Strip CR/LF to prevent SMTP response injection.
-function sanitize(s) {
-  return typeof s === 'string' ? s.replace(/[\r\n]/g, '') : s
-}
-
 class DSN {
   constructor (code, msg, def, subject, detail) {
     this.code = (/^[245]\d{2}/.exec(code)) ? code : def || 450;
@@ -111,13 +108,13 @@ class DSN {
     // multi-line replies — copy the array (C1) and sanitize each element
     if (Array.isArray(this.msg)) {
       this.reply = [];
-      for (const m of this.msg.map(sanitize)) {
+      for (const m of this.msg.map((msg) => utils.sanitize(msg))) {
         this.reply.push(`${[this.cls, this.sub, this.det].join('.')} ${m}`);
       }
       return
     }
 
-    this.reply = `${[this.cls, this.sub, this.det].join('.')} ${sanitize(this.msg || this.default_msg)}`;
+    this.reply = `${[this.cls, this.sub, this.det].join('.')} ${utils.sanitize(this.msg || this.default_msg)}`;
   }
 
   static create (code, msg, subject, detail) {
