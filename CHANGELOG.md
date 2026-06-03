@@ -4,6 +4,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Unreleased
 
+- refactor: use `haraka-utils` sanitize() for SMTP injection guard
+
 ### [1.2.0] - 2026-05-19
 
 - RFC 7505
