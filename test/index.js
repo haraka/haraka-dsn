@@ -104,6 +104,28 @@ describe('haraka-dsn', () => {
     })
   })
 
+  describe('toString', () => {
+    it('returns the scalar reply string', () => {
+      const r = DSN.sec_unauthorized('Try again later', 451)
+      assert.equal(r.toString(), '4.7.1 Try again later')
+    })
+
+    it('serializes via String() and template literals', () => {
+      const r = DSN.sec_unauthorized('Try again later', 451)
+      assert.equal(String(r), '4.7.1 Try again later')
+      assert.equal(`${r}`, '4.7.1 Try again later')
+    })
+
+    it('joins a multi-line reply with LF', () => {
+      const r = DSN.create(550, ['line one', 'line two'])
+      assert.equal(r.toString(), '5.0.0 line one\n5.0.0 line two')
+    })
+
+    it('never yields [object Object]', () => {
+      assert.ok(!DSN.sec_unauthorized('nope', 451).toString().includes('[object Object]'))
+    })
+  })
+
   describe('sec_unspecified default message', () => {
     it('returns "Other or undefined security status" by default', () => {
       const r = DSN.sec_unspecified()
