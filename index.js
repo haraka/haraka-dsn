@@ -117,6 +117,10 @@ class DSN {
     this.reply = `${[this.cls, this.sub, this.det].join('.')} ${utils.sanitize(this.msg || this.default_msg)}`;
   }
 
+  toString () {
+    return Array.isArray(this.reply) ? this.reply.join('\n') : this.reply;
+  }
+
   static create (code, msg, subject, detail) {
     return new DSN(code, msg, null, subject, detail);
   }
